@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { BrowserRouter, Link, Route, Routes, useParams } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle, theme } from './styles'
-import { restaurants, menu } from './data'
+import { restaurants, menus } from './data'
 import {
   Button, Card, CardBody, CardGrid, CardImage, CardTop, Container, Footer,
   FooterLogo, Header, HeaderContent, Hero, HeroTitle, Logo, MenuCard,
@@ -55,7 +55,7 @@ function Restaurant() {
   const [selected, setSelected] = useState(null)
   const [cart, setCart] = useState([])
   const [cartOpen, setCartOpen] = useState(false)
-  const dishes = useMemo(() => menu.map((dish) => ({ ...dish, restaurant: restaurant.name })), [restaurant.name])
+  const dishes = (menus[restaurant.type] || []).map((dish) => ({ ...dish, restaurant: restaurant.name }))
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0)
   const cartTotal = cart.reduce((total, item) => total + Number(item.price.replace(',', '.')) * item.quantity, 0)
 
