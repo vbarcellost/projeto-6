@@ -85,3 +85,24 @@ export const CartQuantity = styled.div`
 export const RemoveButton = styled.button`position: absolute; right: 8px; bottom: 8px; width: 22px; height: 22px; border: 0; border-radius: 50%; background: ${({ theme }) => theme.pink}; color: white; font-size: 18px; line-height: 20px; cursor: pointer;`
 export const CartTotal = styled.div`display: flex; justify-content: space-between; margin-top: 40px; color: white; font-size: 14px; font-weight: 700;`
 export const CartEmpty = styled.div`padding: 48px 16px; text-align: center; color: white; strong { font-size: 18px; } p { margin-top: 8px; font-size: 14px; }`
+export const CheckoutTitle = styled.h2`margin-bottom: 16px; color: white; font-size: 16px; line-height: 22px;`
+export const CheckoutForm = styled.form`display: flex; flex-direction: column; gap: 8px;`
+export const Field = styled.div`
+  min-width: 0; display: flex; flex: 1; flex-direction: column; gap: 4px;
+  label { color: white; font-size: 14px; font-weight: 700; }
+  input { width: 100%; height: 32px; border: 2px solid transparent; padding: 0 8px; outline: none; background: ${({ theme }) => theme.cream}; color: ${({ theme }) => theme.brown}; font-size: 14px; font-weight: 700; }
+  input:focus { border-color: ${({ theme }) => theme.pink}; }
+  input:invalid:not(:placeholder-shown) { border-color: ${({ theme }) => theme.terracotta}; }
+`
+export const FieldRow = styled.div`display: grid; grid-template-columns: ${({ $card }) => $card ? '2fr 1fr' : '1fr 1fr'}; gap: 8px;`
+export const CheckoutActions = styled.div`
+  display: grid; gap: 8px; margin-top: 16px;
+  ${Button} { width: 100%; text-align: center; background: ${({ theme }) => theme.cream}; color: ${({ theme }) => theme.brown}; }
+  ${Button}:first-child { background: ${({ theme }) => theme.pink}; color: white; }
+`
+export const OrderSuccess = styled.div`
+  color: white;
+  h2 { margin-bottom: 16px; font-size: 16px; }
+  p { margin-bottom: 16px; font-size: 14px; line-height: 22px; }
+  ${Button} { width: 100%; margin-top: 8px; text-align: center; background: ${({ theme }) => theme.pink}; }
+`
