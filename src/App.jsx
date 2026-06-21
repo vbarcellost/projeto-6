@@ -8,6 +8,8 @@ import {
   FooterLogo, Header, HeaderContent, Hero, HeroTitle, Logo, MenuCard,
   MenuGrid, MenuImage, Modal, ModalCard, ModalImage, ModalOverlay, NavLink,
   Page, Rating, RestaurantHero, RestaurantHeroContent, Section, Socials, Tag,
+  CartBackdrop, CartButton, CartDrawer, CartEmpty, CartItem, CartItemDetails,
+  CartList, CartQuantity, CartTotal, RemoveButton,
 } from './styles'
 
 function Brand() {
@@ -51,13 +53,34 @@ function Restaurant() {
   const { id } = useParams()
   const restaurant = restaurants.find((item) => String(item.id) === id) || restaurants[0]
   const [selected, setSelected] = useState(null)
+  const [cart, setCart] = useState([])
+  const [cartOpen, setCartOpen] = useState(false)
   const dishes = useMemo(() => menu.map((dish) => ({ ...dish, restaurant: restaurant.name })), [restaurant.name])
+  const itemCount = cart.reduce((total, item) => total + item.quantity, 0)
+  const cartTotal = cart.reduce((total, item) => total + Number(item.price.replace(',', '.')) * item.quantity, 0)
+
+  function addToCart(dish) {
+    setCart((current) => {
+      const existing = current.find((item) => item.id === dish.id)
+      if (existing) return current.map((item) => item.id === dish.id ? { ...item, quantity: item.quantity + 1 } : item)
+      return [...current, { ...dish, quantity: 1 }]
+    })
+    setSelected(null)
+    setCartOpen(true)
+  }
+
+  function changeQuantity(dishId, change) {
+    setCart((current) => current
+      .map((item) => item.id === dishId ? { ...item, quantity: item.quantity + change } : item)
+      .filter((item) => item.quantity > 0))
+  }
 
   return (
     <Page>
       <Header>
         <HeaderContent>
-          <NavLink to="/">Restaurantes</NavLink><Brand /><strong>0 produto(s) no carrinho</strong>
+          <NavLink to="/">Restaurantes</NavLink><Brand />
+          <CartButton type="button" onClick={() => setCartOpen(true)}>{itemCount} produto(s) no carrinho</CartButton>
         </HeaderContent>
       </Header>
       <RestaurantHero $image={restaurant.hero}>
@@ -83,10 +106,42 @@ function Restaurant() {
             <ModalImage src={selected.image} alt={selected.name} />
             <ModalCard>
               <h2>{selected.name}</h2><p>{selected.description}</p><p>Serve: de 2 a 3 pessoas</p>
-              <Button type="button">Adicionar ao carrinho - R$ {selected.price}</Button>
+              <Button type="button" onClick={() => addToCart(selected)}>Adicionar ao carrinho - R$ {selected.price}</Button>
             </ModalCard>
           </Modal>
         </ModalOverlay>
+      )}
+      {cartOpen && (
+        <CartBackdrop onClick={() => setCartOpen(false)}>
+          <CartDrawer role="dialog" aria-modal="true" aria-label="Carrinho de compras" onClick={(event) => event.stopPropagation()}>
+            <button className="close" type="button" aria-label="Fechar carrinho" onClick={() => setCartOpen(false)}>×</button>
+            {cart.length === 0 ? (
+              <CartEmpty><strong>O carrinho está vazio</strong><p>Adicione um prato para continuar.</p></CartEmpty>
+            ) : (
+              <>
+                <CartList>
+                  {cart.map((item) => (
+                    <CartItem key={item.id}>
+                      <img src={item.image} alt={item.name} />
+                      <CartItemDetails>
+                        <h3>{item.name}</h3>
+                        <p>R$ {item.price}</p>
+                        <CartQuantity>
+                          <button type="button" aria-label={`Diminuir ${item.name}`} onClick={() => changeQuantity(item.id, -1)}>−</button>
+                          <span>{item.quantity}</span>
+                          <button type="button" aria-label={`Aumentar ${item.name}`} onClick={() => changeQuantity(item.id, 1)}>+</button>
+                        </CartQuantity>
+                      </CartItemDetails>
+                      <RemoveButton type="button" aria-label={`Remover ${item.name}`} onClick={() => setCart((current) => current.filter((dish) => dish.id !== item.id))}>×</RemoveButton>
+                    </CartItem>
+                  ))}
+                </CartList>
+                <CartTotal><span>Valor total</span><strong>R$ {cartTotal.toFixed(2).replace('.', ',')}</strong></CartTotal>
+                <Button type="button">Continuar com a entrega</Button>
+              </>
+            )}
+          </CartDrawer>
+        </CartBackdrop>
       )}
     </Page>
   )
