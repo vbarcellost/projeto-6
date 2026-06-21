@@ -1,0 +1,17 @@
+export const restaurants = [
+  { id: 1, name: 'Hioki Sushi', type: 'Japonesa', rating: 4.9, featured: true, image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85', description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis e pratos quentes preparados com ingredientes selecionados.' },
+  { id: 2, name: 'La Dolce Vita Trattoria', type: 'Italiana', rating: 4.6, featured: true, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85', description: 'A La Dolce Vita traz a autêntica cozinha italiana: massas artesanais, pizzas de longa fermentação e molhos preparados lentamente.' },
+  { id: 3, name: 'La Dolce Vita Trattoria', type: 'Italiana', rating: 4.6, image: 'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85', description: 'A La Dolce Vita traz a autêntica cozinha italiana: massas artesanais, pizzas de longa fermentação e molhos preparados lentamente.' },
+  { id: 4, name: 'Hioki Sushi', type: 'Japonesa', rating: 4.9, image: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85', description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis e pratos quentes preparados com ingredientes selecionados.' },
+  { id: 5, name: 'La Dolce Vita Trattoria', type: 'Italiana', rating: 4.6, image: 'https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=85', description: 'A La Dolce Vita traz a autêntica cozinha italiana: massas artesanais, pizzas de longa fermentação e molhos preparados lentamente.' },
+  { id: 6, name: 'Hioki Sushi', type: 'Japonesa', rating: 4.9, image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=85', hero: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85', description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis e pratos quentes preparados com ingredientes selecionados.' },
+]
+
+export const menu = Array.from({ length: 6 }, (_, index) => ({
+  id: index + 1,
+  name: 'Pizza Marguerita',
+  image: ['https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=85', 'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=85', 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=85'][index % 3],
+  short: 'A clássica Marguerita: molho de tomate, muçarela, manjericão fresco e um toque de azeite.',
+  description: 'A pizza Margherita é uma pizza clássica da culinária italiana, reconhecida por sua simplicidade e sabor inconfundível. É feita com uma base de massa fina e crocante, molho de tomate fresco, queijo muçarela de alta qualidade, manjericão fresco e azeite de oliva.',
+  price: '60,90',
+}))
