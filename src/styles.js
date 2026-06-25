@@ -38,8 +38,13 @@ export const Logo = styled(Link)`
 `
 export const NavLink = styled(Link)`color: inherit; text-decoration: none;`
 export const CartButton = styled.button`border: 0; background: transparent; color: inherit; font-weight: 900; cursor: pointer; @media (max-width: 600px) { max-width: 105px; text-align: right; }`
-export const Hero = styled(Container)`height: 264px; display: grid; place-items: end center; padding-bottom: 40px;`
-export const HeroTitle = styled.h1`font-size: 36px; line-height: 1.2; font-weight: 900; text-align: center; @media (max-width: 600px) { font-size: 27px; }`
+export const Hero = styled(Container)`
+  height: 264px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 40px;
+`
+export const HeroTitle = styled.h1`
+  max-width: 540px; font-size: 36px; line-height: 42px; font-weight: 900; text-align: center;
+  @media (max-width: 600px) { max-width: 360px; font-size: 27px; line-height: 33px; }
+`
 export const Section = styled.main`flex: 1; padding: 80px 0 120px; @media (max-width: 700px) { padding: 48px 0 72px; }`
 export const CardGrid = styled.div`display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px 80px; @media (max-width: 780px) { grid-template-columns: 1fr; gap: 32px; }`
 export const Card = styled.article`position: relative; border: 1px solid ${({ theme }) => theme.primary}; background: ${({ theme }) => theme.white}; display: flex; flex-direction: column;`
