@@ -13,8 +13,10 @@ import {
   CheckoutForm, CheckoutTitle, Field, FieldRow, OrderSuccess,
 } from './styles'
 
+const logoUrl = 'https://raw.githubusercontent.com/BrunoOliveira16/Curso-Engenheiro-Front-End-EBAC/main/Modulo-35/ImagesEfood/logo.png'
+
 function Brand() {
-  return <Logo to="/" aria-label="efood">e<span>food</span></Logo>
+  return <Logo to="/" aria-label="efood"><img src={logoUrl} alt="Logo eFood" /></Logo>
 }
 
 function Home() {

@@ -32,8 +32,9 @@ export const HeaderContent = styled(Container)`
   @media (max-width: 600px) { height: 100px; font-size: 14px; gap: 12px; strong { text-align: right; } }
 `
 export const Logo = styled(Link)`
-  color: ${({ theme }) => theme.pink}; text-decoration: none; font-size: 38px; font-weight: 900; letter-spacing: -4px; line-height: 1;
-  &::before { content: '●'; display: inline-block; font-size: 13px; transform: translate(8px, -18px); } span { letter-spacing: -3px; }
+  display: inline-flex; width: 125px; height: 58px; align-items: center; justify-content: center; text-decoration: none;
+  img { width: 125px; height: 58px; object-fit: contain; }
+  @media (max-width: 600px) { width: 96px; height: auto; img { width: 96px; height: auto; } }
 `
 export const NavLink = styled(Link)`color: inherit; text-decoration: none;`
 export const CartButton = styled.button`border: 0; background: transparent; color: inherit; font-weight: 900; cursor: pointer; @media (max-width: 600px) { max-width: 105px; text-align: right; }`
